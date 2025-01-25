@@ -94,7 +94,7 @@ const DisplayQuestion = () => {
                         <ReactPaginate
                             previousLabel={"Previous"}
                             nextLabel={"Next"}
-                            pageCount={Math.ceil(totalDocuments / usersPerPage)}
+                            pageCount={Math.max(Math.ceil(totalDocuments / usersPerPage), 1)}
                             onPageChange={onPaginationChange}
                             containerClassName={"paginationBttns flex space-x-2"}
                             previousLinkClassName={"previousBttn px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"}
