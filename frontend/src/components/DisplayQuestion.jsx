@@ -4,6 +4,7 @@ import ReactPaginate from 'react-paginate';
 import Anagram from '../helper/Anagram';
 import MCQ from '../helper/MCQ';
 import OtherQuestion from '../helper/OtherQuestion';
+import { ClipLoader } from 'react-spinners';
 
 const DisplayQuestion = () => {
     const [data, setData] = useState([]);
@@ -57,7 +58,7 @@ const DisplayQuestion = () => {
         getData(newPageNumber + 1, searchTerm);
     };
 
-    
+
 
     useEffect(() => {
         getData(pageNumber + 1, searchTerm);
@@ -74,9 +75,12 @@ const DisplayQuestion = () => {
                 className="mb-4 p-2 border rounded w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {loading ? (
-                <div className="flex justify-center items-center">
-                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-blue-500 h-32 w-32"></div>
-                </div>
+                <div className="flex justify-center items-center h-screen">
+                <ClipLoader size={50} color={"#123abc"} loading={loading} /> {/* Render the spinner while loading */}
+            </div>
+                // <div className="flex justify-center items-center">
+                //     <div className="loader ease-linear rounded-full border-8 border-t-8 border-blue-500 h-32 w-32"></div>
+                // </div>
             ) : (
                 <>
                     <div className="grid gap-4">
