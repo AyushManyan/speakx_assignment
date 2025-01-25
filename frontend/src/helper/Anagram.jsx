@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-const Anagram = (item) => {
+import React, { useState } from 'react';
+
+const Anagram = ({ item, index }) => {
     const [showSolution, setShowSolution] = useState(null);
-    const index = item.index;
-    item = item.item;
-
-
 
     return (
         <div>
@@ -12,8 +9,8 @@ const Anagram = (item) => {
                 <h3 className="text-xl font-mono text-blue-400 font-bold mb-2">{item.type}</h3>
                 <p className="text-gray-700 mb-2 font-semibold">{item.title}</p>
                 <ul className="list-disc pl-5 mb-2 font-semibold">
-                    {item.blocks.map((block, index) => (
-                        <li key={index} className="text-gray-600">{block.text}</li>
+                    {item.blocks && item.blocks.map((block, blockIndex) => (
+                        <li key={blockIndex} className="text-gray-600">{block.text}</li>
                     ))}
                 </ul>
 
@@ -28,7 +25,7 @@ const Anagram = (item) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Anagram
+export default Anagram;

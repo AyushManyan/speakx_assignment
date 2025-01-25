@@ -17,27 +17,27 @@ const DisplayQuestion = () => {
     const [selectedOptions, setSelectedOptions] = useState({});
 
 
-    
+
     // fetching data from backend
 
-    const getData = async(page, searchTerm)=>{
-        try{
+    const getData = async (page, searchTerm) => {
+        try {
             setLoading(true);
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/getdata`,{
-                params:{
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/getdata`, {
+                params: {
                     page,
-                    limit:usersPerPage,
+                    limit: usersPerPage,
                     searchTerm
                 }
             });
-            
+
             // shuffed the option in mcq and blocks in anagram
-            const shuffledData = response.data.data.data.map(item=>{
-                if(item.blocks){
-                    item.blocks = item.blocks.sort(()=>Math.random()-0.5);
+            const shuffledData = response.data.data.data.map(item => {
+                if (item.blocks) {
+                    item.blocks = item.blocks.sort(() => Math.random() - 0.5);
                 }
-                if(item.options){
-                    item.options = item.options.sort(()=>Math.random()-0.5);
+                if (item.options) {
+                    item.options = item.options.sort(() => Math.random() - 0.5);
                 }
 
                 return item;
@@ -45,7 +45,7 @@ const DisplayQuestion = () => {
             setData(shuffledData);
             setTotalDocuments(response.data.totalDocuments);
             setLoading(false);
-        }catch(e){
+        } catch (e) {
             setLoading(false);
         }
     };
@@ -57,7 +57,7 @@ const DisplayQuestion = () => {
         getData(newPageNumber + 1, searchTerm);
     };
 
-
+    
 
     useEffect(() => {
         getData(pageNumber + 1, searchTerm);
@@ -75,7 +75,7 @@ const DisplayQuestion = () => {
             />
             {loading ? (
                 <div className="flex justify-center items-center">
-                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-blue-500 h-32 w-32"></div>
                 </div>
             ) : (
                 <>
