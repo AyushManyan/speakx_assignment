@@ -65,6 +65,7 @@ const DisplayQuestion = () => {
 
     return (
         <div className="p-8 bg-gray-100 min-h-screen">
+            <h3 className="text-2xl font-bold mb-4">SpeakX Assignment</h3>
             <input
                 type="text"
                 placeholder="Search by title"
@@ -81,11 +82,11 @@ const DisplayQuestion = () => {
                     <div className="grid gap-4">
                         {data.map((item, index) => {
                             return item?.type === 'ANAGRAM' ? (
-                                <Anagram item={item} index={index} showSolution={showSolution} setShowSolution={setShowSolution} />
+                                <Anagram key={index} item={item} index={index} showSolution={showSolution} setShowSolution={setShowSolution} />
                             ) : item?.type === 'MCQ' ? (
-                                <MCQ item={item} index={index} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+                                <MCQ key={index} item={item} index={index} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
                             ) : (
-                                <OtherQuestion item={item} index={index} />
+                                <OtherQuestion key={index} item={item} index={index} />
                             );
                         })}
                     </div>
